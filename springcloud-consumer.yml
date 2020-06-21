@@ -1,12 +1,12 @@
 spring:
   profiles:
     active:
-      - dev-One
+      - devOne
 ---
 server:
   port: 7001
 spring:
-  profiles: dev-One
+  profiles: devOne
 #SpringBoot 状态信息
 info:
   app.name: springcloud-consumer-one
@@ -23,7 +23,7 @@ eureka:
 server:
   port: 7002
 spring:
-  profiles: dev-feign
+  profiles: devfeign
 #SpringBoot 状态信息
 info:
   app.name: springcloud-consumer-with-feign
