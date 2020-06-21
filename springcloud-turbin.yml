@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+server:
+  port: 10002
+spring:
+  profiles: dev
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+
+turbine:
+  app-config: SPRINGCLOUD-PROVIDER-PRODUCT,SPRINGCLOUD-PROVIDER-USER
+  cluster-name-expression: new String("default")

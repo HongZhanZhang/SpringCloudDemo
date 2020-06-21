@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+server:
+  port: 9050
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+    register-with-eureka: false
+
+spring:
+  profiles: dev
+  application:
+    name:  Spring-Cloud-Zuul-Gateway
+#路由配置
+zuul:
+  routes:
+    SPRINGCLOUD-PROVIDER-USER:  /users-proxy/**
+    SPRINGCLOUD-PROVIDER-PRODUCT:  /product-proxy/**
+#    users是个逻辑名，只起到关联作用
+#    users.path: /users-proxy/**
+#    users.serviceId: microcloud-provider-users
+  ignored-services: #忽略服务名
+    "*"
+#    microcloud-provider-users
+  prefix: /cloud #公共前缀
