@@ -1,14 +1,14 @@
 spring:
   profiles:
     active:
-      - dev-One
+      - devOne
 ---
 
 server:
   port: 8004
 
 spring:
-  profiles: dev-One
+  profiles: devOne
   application:
     name: SpringCloud-Provider-User
 
