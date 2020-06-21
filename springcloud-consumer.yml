@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active:
+      - dev-One
+---
+server:
+  port: 7001
+spring:
+  profiles: dev-One
+#SpringBoot 状态信息
+info:
+  app.name: springcloud-consumer-one
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+---
+server:
+  port: 7002
+spring:
+  profiles: dev-feign
+#SpringBoot 状态信息
+info:
+  app.name: springcloud-consumer-with-feign
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: # 可以被压缩的类型
+        - text/xml
+        - application/xml
+        - application/json
+      min-request-size: 2048 # 超过2048的字节进行压缩
+logging:
+  level:
+    org.example.service: DEBUG
+

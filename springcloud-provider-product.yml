@@ -1,0 +1,159 @@
+spring:
+  profiles:
+    active:
+      - dev-One
+---
+server:
+  port: 8001
+mybatis:
+  mapper-locations: # 所有的mapper映射文件
+    - classpath:mapping/*.xml
+#SpringBoot 状态信息
+info:
+  app.name: springcloud-provider-product-one
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+#Spring配置
+spring:  
+  profiles: dev-One
+  application:
+    name: springcloud-provider-product
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 配置当前要使用的数据源的操作类型
+    #driver-class-name: com.mysql.cj.jdbc.Driver # 配置MySQL的驱动程序类
+    driver-class-name: com.mysql.jdbc.Driver # 配置MySQL的驱动程序类
+    url: jdbc:mysql://192.168.1.125:3306/springcloud?serverTimezone=GMT%2B8 # 数据库连接地址
+    username: root # 数据库用户名
+    password: password@123 # 数据库连接密码
+#  security:
+#    user:
+#      name: admin  # 认证用户名
+#      password: password@123  # 认证密码
+#      roles:
+#        - USER # 授权角色
+#Eureka配置
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+  instance:
+    instance-id: springcloud-provider-product-one #实例名称
+    prefer-ip-address: true #显示IP
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+
+logging:
+  level:
+    org.example.mapper: debug
+#actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+---
+server:
+  port: 8002
+mybatis:
+  mapper-locations: # 所有的mapper映射文件
+    - classpath:mapping/*.xml
+#SpringBoot 状态信息
+info:
+  app.name: springcloud-provider-product-two
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+#Spring配置
+spring:
+  profiles: dev-Two
+  application:
+    name: springcloud-provider-product
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 配置当前要使用的数据源的操作类型
+    #driver-class-name: com.mysql.cj.jdbc.Driver # 配置MySQL的驱动程序类
+    driver-class-name: com.mysql.jdbc.Driver # 配置MySQL的驱动程序类
+    url: jdbc:mysql://192.168.1.125:3306/springcloud2?serverTimezone=GMT%2B8 # 数据库连接地址
+    username: root # 数据库用户名
+    password: password@123 # 数据库连接密码
+#  security:
+#    user:
+#      name: admin  # 认证用户名
+#      password: password@123  # 认证密码
+#      roles:
+#        - USER # 授权角色
+#Eureka配置
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+  instance:
+    instance-id: springcloud-provider-product-two #实例名称
+    prefer-ip-address: true #显示IP
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+
+logging:
+  level:
+    org.example.mapper: debug
+
+#HystrixDashboard 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+---
+server:
+  port: 8003
+mybatis:
+  mapper-locations: # 所有的mapper映射文件
+    - classpath:mapping/*.xml
+#SpringBoot 状态信息
+info:
+  app.name: springcloud-provider-product-three
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+#Spring配置
+spring:
+  profiles: dev-Three
+  application:
+    name: springcloud-provider-product
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 配置当前要使用的数据源的操作类型
+    #driver-class-name: com.mysql.cj.jdbc.Driver # 配置MySQL的驱动程序类
+    driver-class-name: com.mysql.jdbc.Driver # 配置MySQL的驱动程序类
+    url: jdbc:mysql://192.168.1.125:3306/springcloud3?serverTimezone=GMT%2B8 # 数据库连接地址
+    username: root # 数据库用户名
+    password: password@123 # 数据库连接密码
+#  security:
+#    user:
+#      name: admin  # 认证用户名
+#      password: password@123  # 认证密码
+#      roles:
+#        - USER # 授权角色
+#Eureka配置
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+  instance:
+    instance-id: springcloud-provider-product-three #实例名称
+    prefer-ip-address: true #显示IP
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+
+logging:
+  level:
+    org.example.mapper: debug
+
+#HystrixDashboard 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

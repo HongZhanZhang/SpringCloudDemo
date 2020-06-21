@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active:
+      - dev-One
+---
+
+server:
+  port: 8004
+
+spring:
+  profiles: dev-One
+  application:
+    name: SpringCloud-Provider-User
+
+logging:
+  level:
+    cn.enjoy.mapper: debug
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:eureka@Eureka-One:9001/eureka,http://admin:eureka@Eureka-Two:9002/eureka,http://admin:eureka@Eureka-Three:9003/eureka
+  instance:
+    instance-id: SpringCloud-Provider-User
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+
+info:
+  app.name: SpringCloud-Provider-User
+  company.name: SpringCloudDemo
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
