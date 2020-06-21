@@ -1,7 +1,7 @@
 spring:
   profiles:
     active:
-      - dev-One
+      - devOne
 ---
 server:
   port: 8001
@@ -17,7 +17,7 @@ info:
 
 #Spring配置
 spring:  
-  profiles: dev-One
+  profiles: devOne
   application:
     name: springcloud-provider-product
   datasource:
@@ -68,7 +68,7 @@ info:
 
 #Spring配置
 spring:
-  profiles: dev-Two
+  profiles: devTwo
   application:
     name: springcloud-provider-product
   datasource:
@@ -120,7 +120,7 @@ info:
 
 #Spring配置
 spring:
-  profiles: dev-Three
+  profiles: devThree
   application:
     name: springcloud-provider-product
   datasource:
